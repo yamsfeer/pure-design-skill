@@ -1,0 +1,12 @@
+{
+  "name": "pure-design-skill",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "PureDesign Skill — 把一句自然语言需求变成一个自包含 HTML 页面的 UI 设计 skill（给 coding agent 用，无 CLI、无交互问答）。",
+  "packageManager": "pnpm@11.6.0",
+  "license": "Apache-2.0",
+  "scripts": {
+    "index": "node scripts/index.mjs"
+  }
+}
