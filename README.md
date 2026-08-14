@@ -1,6 +1,6 @@
 # PureDesign Skill
 
-A UI-design skill for coding agents: turn a plain-language requirement into a single **self-contained, production-grade HTML page** with a clear visual direction.
+A UI-design skill for coding agents: **describe what you want in plain language, and it turns that into a UI design delivered as an HTML file.** Built on the design-asset library extracted from [OpenDesign](https://github.com/nexu-io/open-design).
 
 No CLI, no interactive UI, no web server, no cloud — the host agent (Claude Code, Pi, or anything that reads `SKILL.md`) drives everything itself. This repo is just three things: **a library of design assets, one workflow (`SKILL.md`), and a few deterministic QC scripts**.
 
@@ -8,7 +8,7 @@ No CLI, no interactive UI, no web server, no cloud — the host agent (Claude Co
 
 ## Why this exists
 
-[OpenDesign](https://github.com/nexu-io/open-design) ships a great design-asset library bundled inside a full platform — login, cloud sync, desktop app, daemon, MCP, a plugin marketplace. A coding agent doesn't need any of that platform; it only needs the assets plus a workflow. So we extracted the asset library (162 skills, 151 design systems, 114 templates, 5 visual directions, 11 craft references) and wrapped it in a single skill, so any agent can design directly with a symlink and no setup.
+[OpenDesign](https://github.com/nexu-io/open-design) ships a great design-asset library bundled inside a full platform — login, cloud sync, desktop app, daemon, MCP, a plugin marketplace. A coding agent doesn't need any of that platform; it only needs the assets plus a workflow. So we extracted the asset library (162 skills, 151 design systems, 114 templates, 5 visual directions, 11 craft references) and wrapped it in a single skill — clone it, symlink it, and any agent can design.
 
 ## How it works
 
@@ -27,8 +27,8 @@ a plain-language requirement
 [Phase 2 — generate, iterate, verify]     (done by the agent itself)
    6. read the selected assets in full
    7. write HTML → self-review vs. the checklist → rewrite → until satisfied (max 6)
-   8. lint:   node scripts/lint.mjs      (deterministic anti-AI-slop; fix P0/P1)
-   9. validate: node scripts/validate.mjs (self-contained, not truncated)
+   8. lint:    node scripts/lint.mjs      (deterministic anti-AI-slop; fix P0/P1)
+   9. validate: node scripts/validate.mjs (no external resources, not truncated)
   10. archive to a semantic filename (+v2/+v3 on collision)
 ```
 
@@ -36,13 +36,21 @@ The key: **the agent never reads 82 MB.** It reads `catalog.md` (~56 KB), picks 
 
 ## Install
 
+Clone the repo, then symlink it into your agent's skills directory:
+
 ```bash
+git clone https://github.com/yamsfeer/pure-design-skill.git
+cd pure-design-skill
+
+# example 1 — a shared hub directory
 mkdir -p ~/.agents/skills
-ln -s /path/to/pure-design-skill ~/.agents/skills/pure-design-skill
-# expose it to your agent(s)
-ln -s ~/.agents/skills/pure-design-skill ~/.claude/skills/pure-design-skill
-ln -s ~/.agents/skills/pure-design-skill ~/.pi/agent/skills/pure-design-skill
+ln -s "$PWD" ~/.agents/skills/pure-design-skill
+
+# example 2 — Claude Code
+ln -s "$PWD" ~/.claude/skills/pure-design-skill
 ```
+
+Any agent that discovers skills from a directory like these will pick it up; for other agents, symlink the cloned repo into their own skills path.
 
 Optional: set `PURE_DESIGN_DIR` to this repo so the agent can locate assets if it can't resolve its own install path.
 
@@ -80,7 +88,7 @@ pure-design-skill/
 |---|---|---|
 | `node scripts/index.mjs` | once, after changing assets | scan `assets/` → regenerate `catalog.md` |
 | `node scripts/lint.mjs <file.html>` | after each write | deterministic anti-AI-slop check; exit 1 = P0/P1 to fix |
-| `node scripts/validate.mjs <file.html>` | before finishing | doctype / `</html>` / length / self-contained |
+| `node scripts/validate.mjs <file.html>` | before finishing | doctype / `</html>` / length / no external resources |
 
 At runtime the agent reads only `catalog.md` and the matched assets; `index.mjs` is a build-time tool.
 
