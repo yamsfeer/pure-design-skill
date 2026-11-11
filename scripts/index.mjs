@@ -19,11 +19,12 @@ const CRAFT_DIR = join(ROOT, 'assets/craft');
 const DIRECTIONS_DIR = join(ROOT, 'assets/directions');
 
 /* ─── 任务类型 → 模板 / skill 候选（收窄核心，与 SKILL.md 一致） ─────────── */
+// 与 pure-design/src/task-types.mjs 保持一致（改一处要同步另一处；长期应改为共享一份 JSON）
 const TASK_TYPES = {
   web:       { label: 'Web 落地页/营销页',   templates: ['web-prototype', 'saas-landing', 'waitlist-page', 'pricing-page'], skills: ['frontend-design', 'taste-skill', 'copywriting', 'marketing-psychology'] },
   dashboard: { label: 'Dashboard / 数据工具', templates: ['dashboard', 'live-dashboard', 'github-dashboard', 'kanban-board'], skills: ['frontend-design', 'd3-visualization', 'data-report'] },
   mobile:    { label: '移动端界面',          templates: ['mobile-app', 'mobile-onboarding'], skills: ['frontend-design', 'swiftui-design', 'imagegen-frontend-mobile'] },
-  deck:      { label: '演示文稿 / Deck',     templates: ['simple-deck', 'html-ppt', 'replit-deck', 'kami-deck'], skills: ['deck-open-slide-canvas', 'frontend-slides'] },
+  deck:      { label: '演示文稿 / Deck',     templates: ['simple-deck', 'replit-deck', 'kami-deck'], skills: ['deck-open-slide-canvas', 'frontend-slides'] },
   editorial: { label: '编辑/杂志风页面',     templates: ['web-prototype', 'magazine-poster', 'blog-post'], skills: ['frontend-design', 'taste-skill', 'copywriting'] },
   brand:     { label: '品牌页 / 作品集',     templates: ['web-prototype', 'open-design-landing', 'image-poster'], skills: ['brand-extract', 'brand-guidelines', 'design-md', 'frontend-design'] },
 };
