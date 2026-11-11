@@ -10,7 +10,7 @@
 | `web` | Web 落地页/营销页 | web-prototype / saas-landing / waitlist-page / pricing-page | frontend-design / taste-skill / copywriting / marketing-psychology |
 | `dashboard` | Dashboard / 数据工具 | dashboard / live-dashboard / github-dashboard / kanban-board | frontend-design / d3-visualization / data-report |
 | `mobile` | 移动端界面 | mobile-app / mobile-onboarding | frontend-design / swiftui-design / imagegen-frontend-mobile |
-| `deck` | 演示文稿 / Deck | simple-deck / html-ppt / replit-deck / kami-deck | deck-open-slide-canvas / frontend-slides |
+| `deck` | 演示文稿 / Deck | simple-deck / replit-deck / kami-deck | deck-open-slide-canvas / frontend-slides |
 | `editorial` | 编辑/杂志风页面 | web-prototype / magazine-poster / blog-post | frontend-design / taste-skill / copywriting |
 | `brand` | 品牌页 / 作品集 | web-prototype / open-design-landing / image-poster | brand-extract / brand-guidelines / design-md / frontend-design |
 
@@ -187,10 +187,13 @@
 
 > 按模板选 3–4 个，read `assets/craft/<id>.md`。
 
-- 默认：typography / color / anti-ai-slop / accessibility-baseline
-- 模板 `dashboard`：state-coverage / accessibility-baseline / laws-of-ux
-- 模板 `mobile-app`：typography / color / anti-ai-slop / state-coverage / accessibility-baseline
+- 默认：typography / color / anti-ai-slop
+- 模板 `dashboard`：state-coverage / color / anti-ai-slop
+- 模板 `mobile-app`：typography / color / anti-ai-slop / state-coverage
+- 模板 `simple-deck`：typography / anti-ai-slop
+- 模板 `replit-deck`：typography / anti-ai-slop
 - 全部可用：accessibility-baseline / animation-discipline / anti-ai-slop / color / form-validation / laws-of-ux / rtl-and-bidi / state-coverage / typography / typography-hierarchy / typography-hierarchy-editorial
+- 按需参考（不默认注入）：accessibility-baseline / laws-of-ux / rtl-and-bidi / form-validation / animation-discipline / typography-hierarchy / typography-hierarchy-editorial
 
 ## 五、skill 长尾清单（149 个，按需）
 
@@ -346,7 +349,7 @@
 - `writing-guidelines` — Review docs/prose for Writing Guidelines compliance. Use when asked to "review my docs", "check writing style", "audit …
 - `youtube-clipper` — YouTube clip generation and editing with automated workflows — pull source video, slice highlights, add captions, and e…
 
-## 六、模板长尾清单（96 个，按需）
+## 六、模板长尾清单（97 个，按需）
 
 > 上面任务类型表里没有的模板。需要时 read `assets/design-templates/<id>/SKILL.md`。
 
@@ -365,6 +368,7 @@
 - `gamified-app` — A multi-frame gamified mobile-app prototype — three phone frames on a dark
 - `guizang-ppt` — For marketing and gtm work: bind launches, campaigns, events, and brand plans to growth and pipeline outcomes. Built ar…
 - `hr-onboarding` — A new-hire onboarding plan as a single page — first week schedule,
+- `html-ppt` — For consulting delivery work: turn diagnosis, frameworks, and project work into a client-adoptable action plan. Built a…
 - `html-ppt-course-module` — A first-30-days onboarding module for new hospitality hires — the behaviors, the practice, the checks, and the manager …
 - `html-ppt-graphify-dark-graph` — Open Design's feature business case for the plugin marketplace: the user pain, options, tradeoffs, and the measure of s…
 - `html-ppt-hermes-cyber-terminal` — Open Design + BYOK: choosing and wiring your own model, hands-on — cost, quality, and the routing decision. Built as a …
