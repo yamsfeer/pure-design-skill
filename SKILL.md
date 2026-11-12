@@ -3,7 +3,7 @@ name: pure-design-skill
 description: |
   把用户一句口语化的自然语言需求，变成一个自包含、有明确设计风格、生产级的 HTML 页面。
   内置 open-design 完整资产库（162 个技能、151 个设计系统、114 个模板、5 个视觉方向、11 个工艺参考）。
-  流程：判断任务类型 → 查 catalog 收窄选型 → grilling 澄清 → 迭代生成 → 确定性反 AI 味 lint → 交付校验。
+  流程：判断任务类型 → 查 catalog 收窄选型 → grilling 澄清 → 迭代生成 → 确定性反 AI 味 lint → 真浏览器视觉自检 → 交付校验。
 triggers:
   - "设计一个页面"
   - "做一个网站"
@@ -37,10 +37,11 @@ triggers:
    - 方向：`assets/directions/<id>.md`
    - craft：按 catalog.md「四」里的映射选 3–4 个，read `assets/craft/<id>.md`
    - 模板：`assets/design-templates/<id>/SKILL.md` + 它的 `assets/template.html`（种子骨架）+ `references/layouts.md`（区块库）+ `references/checklist.md`（自检清单）
-7. **生成循环**：写完整 HTML → 对照自检清单逐条自查 → 不达标就重写 → 直到满意。**最多 6 版**，达到满意就停，别硬凑轮数。
-8. **写后 lint**（确定性，非自评）：每写一版后跑 `node scripts/lint.mjs <file>`，P0/P1 必须修，P2 尽量修。
-9. **交付校验**：跑 `node scripts/validate.mjs <file>`，确认自包含、没截断。
-10. **归档**：写到语义文件名（从 brief 派生，中英文混排），已存在就 `+v2`/`+v3`。
+7. **生成循环**：写完整 HTML → 对照自检清单逐条自查 → 不达标就修 → 直到满意。**最多 6 版**，达到满意就停，别硬凑轮数。第 2 版起优先用局部替换（改一个 section / 一段 CSS），不要整页重写。
+8. **写后 lint**（字符串级，确定性）：每写一版后跑 `node scripts/lint.mjs <file>`，P0/P1 必须修，P2 尽量修。
+9. **视觉自检**（真浏览器，确定性）：跑 `node scripts/visual.mjs <file>`，在 390 与 1440 宽度下实测横向溢出、文字对比度、触控目标、标题层级、空 section。**P0 必须清零**（横向溢出是硬伤），P1 尽量修。没有本机 Chromium 时会自动跳过，不阻断交付。
+10. **交付校验**：跑 `node scripts/validate.mjs <file>`，确认自包含、没截断。
+11. **归档**：写到语义文件名（从 brief 派生，中英文混排），已存在就 `+v2`/`+v3`。
 
 ## 输出契约（HARD REQUIREMENTS）
 
@@ -64,7 +65,7 @@ triggers:
 | `SKILL_DIR/assets/design-templates/<id>/` | 模板（SKILL.md + assets/template.html + references/） |
 | `SKILL_DIR/assets/directions/<id>.md` | 视觉方向 |
 | `SKILL_DIR/assets/craft/<id>.md` | 工艺参考 |
-| `SKILL_DIR/scripts/lint.mjs` / `scripts/validate.mjs` | 确定性质检脚本 |
+| `SKILL_DIR/scripts/lint.mjs` / `scripts/validate.mjs` / `scripts/visual.mjs` | 确定性质检脚本（字符串 lint / 交付校验 / 真浏览器视觉自检） |
 
 如果你（agent）知道本 skill 的安装路径就直接用；否则先定位本 SKILL.md，或用 `PURE_DESIGN_DIR` 环境变量。
 

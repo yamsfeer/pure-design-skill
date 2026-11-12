@@ -28,7 +28,8 @@
    6. 读选中的资产全文
    7. 写 HTML → 对照自检清单自查 → 重写 → 满意（最多 6 版）
    8. lint：    node scripts/lint.mjs      （确定性反 AI 味，修 P0/P1）
-   9. validate：node scripts/validate.mjs  （不依赖外部资源、没截断）
+   9. visual：  node scripts/visual.mjs    （真浏览器 390/1440：溢出、对比度、触控目标，P0 清零）
+  10. validate：node scripts/validate.mjs  （不依赖外部资源、没截断）
   10. 归档：语义文件名（重名 +v2/+v3）
 ```
 
@@ -88,6 +89,7 @@ pure-design-skill/
 |---|---|---|
 | `node scripts/index.mjs` | 资产变动后（一次性） | 扫描 `assets/` → 重新生成 `catalog.md` |
 | `node scripts/lint.mjs <file.html>` | 每次写完后 | 确定性反 AI 味检查；退出码 1 = 有 P0/P1 要修 |
+| `node scripts/visual.mjs <file.html>` | 每次写完后 | 真浏览器视觉自检（390/1440）；退出码 1 = 有 P0（如横向溢出） |
 | `node scripts/validate.mjs <file.html>` | 完成前 | doctype / `</html>` / 长度 / 不依赖外部资源 |
 
 运行时 agent 只读 `catalog.md` 和命中的资产；`index.mjs` 是构建期工具。

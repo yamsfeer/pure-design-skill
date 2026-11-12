@@ -27,9 +27,10 @@ a plain-language requirement
 [Phase 2 — generate, iterate, verify]     (done by the agent itself)
    6. read the selected assets in full
    7. write HTML → self-review vs. the checklist → rewrite → until satisfied (max 6)
-   8. lint:    node scripts/lint.mjs      (deterministic anti-AI-slop; fix P0/P1)
-   9. validate: node scripts/validate.mjs (no external resources, not truncated)
-  10. archive to a semantic filename (+v2/+v3 on collision)
+   8. lint:     node scripts/lint.mjs      (deterministic anti-AI-slop; fix P0/P1)
+   9. visual:   node scripts/visual.mjs    (real Chromium at 390/1440: overflow, contrast, tap targets; fix P0)
+  10. validate: node scripts/validate.mjs  (no external resources, not truncated)
+  11. archive to a semantic filename (+v2/+v3 on collision)
 ```
 
 The key: **the agent never reads 82 MB.** It reads `catalog.md` (~56 KB), picks candidates from it, then reads only the few matched assets.
